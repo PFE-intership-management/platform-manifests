@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: jawher27/forum-frontend:IMAGE_TAG
+          image: jawher27/forum-frontend:1.0.18
           imagePullPolicy: Always
           ports:
             - containerPort: 80
