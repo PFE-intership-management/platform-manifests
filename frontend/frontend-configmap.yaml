@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: frontend-env-config
+  namespace: platform
+data:
+  env.js: |
+    window['env'] = {
+        apiUrl:  'http://4.220.25.25:9090' 
+    } ;
