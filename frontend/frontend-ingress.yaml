@@ -4,9 +4,16 @@ metadata:
   name: frontend-ingress
   namespace: platform
   annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   ingressClassName: nginx
+  tls:
+    - hosts:
+        - vermeg-internship.me
+        - www.vermeg-internship.me
+      secretName: frontend-tls
   rules:
     - host: vermeg-internship.me
       http:
