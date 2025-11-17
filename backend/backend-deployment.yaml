@@ -45,4 +45,14 @@ spec:
                 secretKeyRef:
                   name: backend-secret
                   key: DB_PASSWORD
+
+            - name: SENTRY_DSN
+              valueFrom:
+                secretKeyRef:
+                  name: backend-secret
+                  key: SENTRY_DSN
+            - name: SENTRY_ENVIRONMENT
+              value: "production"
+            - name: SENTRY_RELEASE
+              value: "1.0.0"
       restartPolicy: Always

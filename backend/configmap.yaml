@@ -4,5 +4,5 @@ metadata:
   name: backend-config
   namespace: platform
 data:
-  DB_URL: "jdbc:postgresql://postgres-service:5432/Forum"
+  DB_URL: "jdbc:postgresql://postgres-service:5432/Vermeginternship"
   SERVER_PORT: "9090"
