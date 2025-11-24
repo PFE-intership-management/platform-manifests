@@ -9,7 +9,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: api.vermeg-internship.me
+    - host: api.vermeg-internships.me
       http:
         paths:
           - path: /

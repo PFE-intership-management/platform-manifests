@@ -6,5 +6,5 @@ metadata:
 data:
   env.js: |
     window['env'] = {
-        apiUrl:  'https://api.vermeg-internship.me' 
+        apiUrl:  'https://api.vermeg-internships.me' 
     } ;
