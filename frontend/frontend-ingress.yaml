@@ -3,16 +3,10 @@ kind: Ingress
 metadata:
   name: frontend-ingress
   namespace: platform
-  annotations:
-    cert-manager.io/cluster-issuer: letsencrypt-prod
-    
+
+
 spec:
   ingressClassName: nginx
-  tls:
-    - hosts:
-        - vermeg-internship.me
-        - www.vermeg-internship.me
-      secretName: frontend-tls
   rules:
     - host: vermeg-internship.me
       http:

@@ -4,14 +4,10 @@ metadata:
   name: backend-ingress
   namespace: platform
   annotations:
-    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
 
 spec:
   ingressClassName: nginx
-  tls:
-    - hosts:
-        - api.vermeg-internship.me
-      secretName: backend-tls
   rules:
     - host: api.vermeg-internship.me
       http:
