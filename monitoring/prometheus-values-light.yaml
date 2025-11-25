@@ -1,0 +1,105 @@
+# ==========================================
+# Configuration ALLÉGÉE pour petit cluster
+# ==========================================
+
+# Prometheus - Configuration minimale
+prometheus:
+  enabled: true
+  prometheusSpec:
+    # Réduire la rétention (7 jours au lieu de 15)
+    retention: 7d
+
+    # Réduire les ressources
+    resources:
+      requests:
+        cpu: 200m
+        memory: 256Mi
+      limits:
+        cpu: 500m
+        memory: 512Mi
+
+    # Storage réduit
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 10Gi  # Au lieu de 20Gi
+
+    # Scrape moins fréquent pour économiser CPU
+    scrapeInterval: 60s  # Au lieu de 30s par défaut
+    evaluationInterval: 60s
+
+# Grafana - Configuration minimale
+grafana:
+  enabled: true
+  adminPassword: "VermegAdmin2024!"  # ← Changez !
+
+  # Ressources réduites
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 200m
+      memory: 256Mi
+
+  # Pas de persistence (données perdues au redémarrage)
+  # Économise du stockage
+  persistence:
+    enabled: false
+
+  # Ingress
+  ingress:
+    enabled: true
+    ingressClassName: nginx
+    hosts:
+      - grafana.vermeg-internships.me
+    tls:
+      - secretName: grafana-tls
+        hosts:
+          - grafana.vermeg-internships.me
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+
+# Alertmanager - DÉSACTIVÉ pour économiser
+alertmanager:
+  enabled: false
+
+# Prometheus Operator - Ressources réduites
+prometheusOperator:
+  resources:
+    requests:
+      cpu: 50m
+      memory: 64Mi
+    limits:
+      cpu: 100m
+      memory: 128Mi
+
+# Node Exporter - DÉSACTIVÉ (pas critique)
+prometheus-node-exporter:
+  enabled: false
+
+# Kube State Metrics - ACTIVÉ (essentiel)
+kube-state-metrics:
+  enabled: true
+  resources:
+    requests:
+      cpu: 50m
+      memory: 64Mi
+    limits:
+      cpu: 100m
+      memory: 128Mi
+
+# Désactiver les composants optionnels
+kubeApiServer:
+  enabled: true
+kubeControllerManager:
+  enabled: false
+kubeScheduler:
+  enabled: false
+kubeProxy:
+  enabled: false
+kubelet:
+  enabled: true
