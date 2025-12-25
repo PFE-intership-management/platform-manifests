@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: jawher27/platform-frontend:1.0.30
+          image: jawher27/platform-frontend:1.0.32
           imagePullPolicy: Always
           ports:
             - containerPort: 80
