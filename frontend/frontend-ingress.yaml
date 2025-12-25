@@ -7,7 +7,8 @@ spec:
   ingressClassName: nginx
 
   rules:
-    - http:
+    - host: vermeg-internships.me
+      http:
         paths:
           - path: /
             pathType: Prefix
@@ -18,3 +19,13 @@ spec:
                   number: 80
 
 
+    - host: www.vermeg-internship.me
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: frontend-service
+                port:
+                  number: 80
