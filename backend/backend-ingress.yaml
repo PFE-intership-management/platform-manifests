@@ -3,21 +3,14 @@ kind: Ingress
 metadata:
   name: backend-ingress
   namespace: platform
-  annotations:
-    cert-manager.io/cluster-issuer: letsencrypt-prod
-    nginx.ingress.kubernetes.io/ssl-redirect: "true"
 
 spec:
   ingressClassName: nginx
-  tls:
-    - hosts:
-      - api.vermeg-internships.me
-      secretName: backend-tls
+
   rules:
-    - host: api.vermeg-internships.me
-      http:
+    - http:
         paths:
-          - path: /
+          - path: /api
             pathType: Prefix
             backend:
               service:
